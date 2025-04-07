@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 typedef struct {
   int pv;
@@ -35,9 +36,9 @@ void Init(Stat j[]) {
 
   strcpy(j[3].nom, "Soigneur");
   j[3].pv = 100;
-  j[3].damage1 = 0;
-  j[3].damage2 = 0;
-  j[3].spe = 0;
+  j[3].damage1 = 5;
+  j[3].damage2 = 10;
+  j[3].spe = 15;
   j[3].soin = 40;
 }
 
@@ -56,15 +57,71 @@ void ChoixJoueur(Stat dest[], Stat source[]) {
   dest[2] = source[p3];
 }
 
+void Affichage(Stat j1[], Stat j2[], int choix){
+  printf("********************************************************************\n");
+  if (choix == 1) {
+    printf("Joueur 1:                          Joueur 2:\n");
+    for (int i = 0; i < 3; i++) {
+      printf("-%s (pv: %d)                   -%s (pv: %d)\n",j1[i].nom, j1[i].pv, j2[i].nom, j2[i].pv);
+    }
+  }
+  else if(choix == 2){
+    printf("Joueur 1:                         Bot:\n");
+    for (int i = 0; i < 3; i++) {
+      printf("-%s (pv: %d)                   -%s (pv: %d)\n",j1[i].nom, j1[i].pv, j2[i].nom, j2[i].pv);
+    }
+  }
+}
+
+void Start(Stat j1[], Stat j2[], int c){
+  int choix, cible, attaque;
+  while(j1[0].pv > 0 && j2[0].pv > 0 && j1[1].pv > 0 && j2[1].pv > 0 && j1[2].pv > 0 && j2[2].pv > 0){
+    //attaque joueur 1
+    choix = rand() % 3;
+    cible = rand() % 3;
+    printf("1 -> Attaque 1  2 -> Attaque 2  3 -> Attaque spéciale\n");
+    printf("Joueur1(%s) attaque joueur2(%s) avec: ", j1[choix].nom, j2[cible].nom);
+    scanf("%d", &attaque);
+    if(attaque == 1){
+      j2[cible].pv -= j1[choix].damage1;
+    }
+    else if(attaque == 2){
+      j2[cible].pv -= j1[choix].damage2;
+    }
+    else{
+      j2[cible].pv -= j1[choix].spe;
+    }
+    Affichage(j1, j2, c);
+    //attaque joueur 2
+    choix = rand() % 3;
+    cible = rand() % 3;
+    printf("1 -> Attaque 1  2 -> Attaque 2  3 -> Attaque spéciale\n");
+    printf("joueur2(%s) attaque joueur1(%s) avec: ", j2[choix].nom, j1[cible].nom);
+    scanf("%d", &attaque);
+    if(attaque == 1){
+      j1[cible].pv -= j2[choix].damage1;
+    }
+    else if(attaque == 2){
+      j1[cible].pv -= j2[choix].damage2;
+    }
+    else{
+      j1[cible].pv -= j2[choix].spe;
+    }
+    Affichage(j1, j2, c);
+  }
+}
+
+
 int main(void) {
+  srand(time(NULL));
   Stat joueurs[4]; // 4 personnages
   Stat j1[3], j2[3];
   int choix;
 
   Init(joueurs);
 
-  printf("Adversaire :\n");
   printf("1 -> Joueur 2      2 -> Bot\n");
+  printf("Adversaire : ");
   scanf("%d", &choix);
 
   if (choix == 1 || choix == 2) {
@@ -75,22 +132,21 @@ int main(void) {
       printf("Choix joueur 2 :\n");
       ChoixJoueur(j2, joueurs);
     }
+    else if(choix == 2) {
+      printf("Choix bot :\n");
+      ChoixJoueur(j2, joueurs);
+    }
   } else {
     printf("Erreur : choix invalide.\n");
     exit(1);
   }
 
-  printf("Joueur 1 a choisi :\n");
+  /*printf("Joueur 1 a choisi :\n");
   for (int i = 0; i < 3; i++) {
     printf("-%s\n", j1[i].nom);
-  }
-
-  if (choix == 1) {
-    printf("Joueur 2 a choisi :\n");
-    for (int i = 0; i < 3; i++) {
-      printf("-%s\n", j2[i].nom);
-    }
-  }
-
+  }*/
+  Affichage(j1, j2,choix);
+  Start(j1, j2, choix);
+  
   return 0;
 }
