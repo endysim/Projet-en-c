@@ -41,6 +41,13 @@ void Init(Stat j[]) {
   j[3].spe = 15;
   j[3].soin = 40;
 }
+void Liste(){
+  printf("Liste des personnages :\n");
+  printf("0 -> Archer (pv: 100, damage1: 7, damage2: 15, spe: 50, soin: 0)\n");
+  printf("1 -> Guerrier (pv: 150, damage1: 10, damage2: 20, spe: 30, soin: 0)\n");
+  printf("2 -> Mage (pv: 80, damage1: 40, damage2: 50, spe: 60, soin: 0)\n");
+  printf("3 -> Soigneur (pv: 100, damage1: 5, damage2: 10, spe: 15, soin: 40)\n");
+}
 
 void ChoixJoueur(Stat dest[], Stat source[]) {
   int p1, p2, p3;
@@ -84,6 +91,9 @@ void Start(Stat j1[], Stat j2[], int c, int joueur1, int joueur2) {
     while (j2[cible].pv <= 0 || j1[choix].pv <= 0) {
       choix = rand() % 3;
       cible = rand() % 3;
+      if(joueur2 <= 0){
+        break;
+      }
     }
     printf("1 -> Attaque 1  2 -> Attaque 2  3 -> Attaque spéciale\n");
     printf("Joueur1(%s) attaque joueur2(%s) avec: ", j1[choix].nom,
@@ -106,6 +116,9 @@ void Start(Stat j1[], Stat j2[], int c, int joueur1, int joueur2) {
     while (j1[cible].pv <= 0 || j2[choix].pv <= 0) {
       choix = rand() % 3;
       cible = rand() % 3;
+      if(joueur1 <= 0){
+        break;
+      }
     }
     printf("1 -> Attaque 1  2 -> Attaque 2  3 -> Attaque spéciale\n");
     printf("joueur2(%s) attaque joueur1(%s) avec: ", j2[choix].nom,
@@ -123,6 +136,11 @@ void Start(Stat j1[], Stat j2[], int c, int joueur1, int joueur2) {
     }
     Affichage(j1, j2, c);
   }
+  if (joueur1 <= 0){
+    printf("Joueur 2 a gagné\n");
+  }
+  else
+    printf("Joueur 1 a gagné\n");
 }
 
 int main(void) {
@@ -137,7 +155,7 @@ int main(void) {
   printf("1 -> Joueur 2      2 -> Bot\n");
   printf("Adversaire : ");
   scanf("%d", &choix);
-
+  Liste();
   if (choix == 1 || choix == 2) {
     printf("Choix joueur 1 :\n");
     ChoixJoueur(j1, joueurs);
