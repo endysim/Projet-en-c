@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <unistd.h>
 
 typedef struct {
   int pv;
@@ -14,6 +15,11 @@ typedef struct {
   int spe;
   int soin;
 } Stat;
+
+void effacerEcran() {
+  printf("\033[2J"); // Efface tout l’écran
+  printf("\033[H");  // Replace le curseur en haut à gauche
+}
 
 void Init(Stat j[]) {
   strcpy(j[0].nom, "ARCHER");
@@ -162,6 +168,7 @@ void Combat(Stat j1[], Stat j2[], int joueur1, int joueur2, int c) {
       choix = rand() % 5;
       cible = rand() % 5;
     }
+    effacerEcran();
     Affichage(j1, j2, c, choix, cible);
     printf("🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫 :\n");
     printf("1 -> %s(%d)\n2 -> %s(%d)\n3 -> %s(%d)\n4 -> Soin(%d)\n",
@@ -196,6 +203,7 @@ void Combat(Stat j1[], Stat j2[], int joueur1, int joueur2, int c) {
       choix = rand() % 5;
       cible = rand() % 5;
     }
+    effacerEcran();
     Affichage(j1, j2, c, cible, choix);
     printf("🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫 :\n");
     printf("1 -> %s(%d)\n2 -> %s(%d)\n3 -> %s(%d)\n4 -> Soin(%d)\n",
@@ -238,7 +246,7 @@ void Start(Stat j1[], Stat j2[], int c, int joueur1, int joueur2) {
 
 int main(void) {
   srand(time(NULL));
-  Stat joueurs[4]; // 4 personnages
+  Stat joueurs[5]; // 4 personnages
   int joueur1 = 3, joueur2 = 3;
   Stat j1[3], j2[3];
   int choix;
@@ -266,6 +274,5 @@ int main(void) {
   }
   // Affichage(j1, j2, choix, -1, -1);
   Start(j1, j2, choix, joueur1, joueur2);
-
   return 0;
 }
