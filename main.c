@@ -85,7 +85,7 @@ void Init(Stat j[]) {
 void Liste(Stat j[], int n) {
   printf("Liste des personnages :\n");
 
-  for (int i = 0; i < n; i++) {
+  for (int i = 0; i < n+1; i+=2) {
     printf("%d -> %s                           %d -> %s\n", i, j[i].nom, i + 1,
            j[i + 1].nom);
     printf("| pv: %d |                           | pv: %d |\n", j[i].pv,
@@ -99,23 +99,11 @@ void Liste(Stat j[], int n) {
     printf("| soin: %d |                           | soin: %d |\n", j[i].soin,
            j[i + 1].soin);
   }
-  /*printf("%d -> | %s |\n| pv: %d |\n| %s: %d | \n| %s: %d |\n| %s: %d |\n|
-soin: %d |\n \n",i,j[i].nom,j[i].pv, j[i].attaque1,j[i].damage1,
-j[i].attaque2,j[i].damage2, j[i].attaque3,j[i].spe,j[i].soin);
-}
-printf("0 -> Archer (pv: 100, damage1: 7, damage2: 15, spe: 50, soin: 0)\n");
-printf(
-    "1 -> Guerrier (pv: 150, damage1: 10, damage2: 20, spe: 30, soin: 0)\n");
-printf("2 -> Mage (pv: 80, damage1: 40, damage2: 50, spe: 60, soin: 0)\n");
-printf(
-    "3 -> Soigneur (pv: 100, damage1: 5, damage2: 10, spe: 15, soin: 40)\n");
-printf("4 -> Sonic (pv: 100, damage1: 5, damage2: 10, spe: 15, soin: 40)\n");
-printf("5 -> Mario (pv: 100, damage1: 5, damage2: 10, spe: 15, soin: 40)\n");*/
 }
 
 void ChoixJoueur(Stat dest[], Stat source[]) {
   int p1, p2, p3;
-  printf("Entrez les numéros des 3 personnages à choisir (0 à 3) : ");
+  printf("Entrez les numéros des 3 personnages à choisir (0 à 5) : ");
   scanf("%d %d %d", &p1, &p2, &p3);
 
   if (p1 < 0 || p1 > 5 || p2 < 0 || p2 > 5 || p3 < 0 || p3 > 5) {
@@ -129,6 +117,8 @@ void ChoixJoueur(Stat dest[], Stat source[]) {
 }
 
 void Affichage(Stat j1[], Stat j2[], int choix, int a, int c) {
+  char *d1 = "";
+  char *d2 = "";
   char *p1 = "";
   char *p2 = "";
   printf("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\n");
@@ -137,16 +127,31 @@ void Affichage(Stat j1[], Stat j2[], int choix, int a, int c) {
     for (int i = 0; i < 3; i++) {
       if (a == i) {
         p1 = "💥";
-      } else {
+      } else{
         p1 = "";
       }
       if (c == i) {
         p2 = "💥";
-      } else {
+      } else{
         p2 = "";
       }
-      printf("-%s (pv: %d)%s                   %s-%s (pv: %d)\n", j1[i].nom,
-             j1[i].pv, p1, p2, j2[i].nom, j2[i].pv);
+
+      if (j1[i].pv <= 0){
+        d1 = "💀";
+      }
+      else{
+        d1 = "";
+      }
+
+      if (j2[i].pv <= 0){
+        d2 = "💀";
+      }
+      else{
+        d2 = "";
+      }
+
+      printf("-%s%s (pv: %d)%s                   %s-%s (pv: %d)%s\n", d1,j1[i].nom,
+             j1[i].pv, p1, p2, j2[i].nom, j2[i].pv,d2);
     }
   } else if (choix == 2) {
     printf("Joueur 1:                         Bot:\n");
@@ -158,89 +163,118 @@ void Affichage(Stat j1[], Stat j2[], int choix, int a, int c) {
   printf("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\n");
 }
 
-void Combat(Stat j1[], Stat j2[], int joueur1, int joueur2, int c) {
-  int choix, cible, attaque;
-  while (joueur1 >= 0 && joueur2 >= 0) {
-    // attaque joueur 1
-    choix = rand() % 5;
-    cible = rand() % 5;
+
+void AttaqueJ1(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
+    int choix, cible, attaque;
+
+    choix = rand() % 3;
+    cible = rand() % 3;
     while (j2[cible].pv <= 0 || j1[choix].pv <= 0) {
-      choix = rand() % 5;
-      cible = rand() % 5;
+      choix = rand() % 3;
+      cible = rand() % 3;
     }
+
     effacerEcran();
     Affichage(j1, j2, c, choix, cible);
-    printf("🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫 :\n");
-    printf("1 -> %s(%d)\n2 -> %s(%d)\n3 -> %s(%d)\n4 -> Soin(%d)\n",
-           j1[choix].attaque1, j1[choix].damage1, j1[choix].attaque2,
-           j1[choix].damage2, j1[choix].attaque3, j1[choix].spe,
-           j1[choix].soin);
-    printf("🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫 :\n");
-    printf("Joueur1(%s) attaque joueur2(%s) avec: ", j1[choix].nom,
-           j2[cible].nom);
-    scanf("%d", &attaque);
-    if (attaque == 1) {
-      j2[cible].pv -= j1[choix].damage1;
-    } else if (attaque == 2) {
-      j2[cible].pv -= j1[choix].damage2;
-    } else if (attaque == 3) {
-      j2[cible].pv -= j1[choix].spe;
-    } else {
-      j1[choix].pv += j1[choix].soin;
-    }
-    if (j2[cible].pv <= 0) {
-      joueur2--;
-      printf("Joueur 2 a %d personnages restants\n", joueur2);
-      if (joueur2 <= 0) {
-        break;
-      }
-    }
-    // Affichage(j1, j2, c, choix, cible);
-    //  attaque joueur 2
-    choix = rand() % 5;
-    cible = rand() % 5;
-    while (j1[cible].pv <= 0 || j2[choix].pv <= 0) {
-      choix = rand() % 5;
-      cible = rand() % 5;
-    }
-    effacerEcran();
-    Affichage(j1, j2, c, cible, choix);
-    printf("🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫 :\n");
-    printf("1 -> %s(%d)\n2 -> %s(%d)\n3 -> %s(%d)\n4 -> Soin(%d)\n",
-           j2[choix].attaque1, j2[choix].damage1, j2[choix].attaque2,
-           j2[choix].damage2, j2[choix].attaque3, j2[choix].spe,
-           j2[choix].soin);
-    printf("🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫🔫 :\n");
-    printf("joueur2(%s) attaque joueur1(%s) avec: ", j2[choix].nom,
-           j1[cible].nom);
-    scanf("%d", &attaque);
-    if (attaque == 1) {
-      j1[cible].pv -= j2[choix].damage1;
-    } else if (attaque == 2) {
-      j1[cible].pv -= j2[choix].damage2;
-    } else if (attaque == 3) {
-      j1[cible].pv -= j2[choix].spe;
-    } else {
-      j2[choix].pv += j2[choix].soin;
-    }
-    if (j1[cible].pv <= 0) {
-      joueur1--;
-      printf("Joueur 1 a %d personnages restants\n", joueur1);
-      if (joueur1 <= 0) {
-        break;
-      }
-    }
-    // Affichage(j1, j2, c, choix, cible);
-  }
 
-  if (joueur1 <= 0) {
-    printf("Joueur 2 a gagné🏆\n");
-  } else {
-    printf("Joueur 1 a gagné🏆\n");
-  }
+    printf("🔫 MENU D'ATTAQUE 🔫\n");
+    printf("1 -> %s (%d dmg)\n", j1[choix].attaque1, j1[choix].damage1);
+    printf("2 -> %s (%d dmg)\n", j1[choix].attaque2, j1[choix].damage2);
+    printf("3 -> %s (%d dmg)\n", j1[choix].attaque3, j1[choix].spe);
+    printf("4 -> Soin (+%d pv)\n", j1[choix].soin);
+    int entreeValide = 0;
+    while (!entreeValide) {
+    printf("Joueur1(%s) attaque joueur2(%s) avec: ", j1[choix].nom, j2[cible].nom);
+    
+    if (scanf("%d", &attaque) == 1 && attaque >= 1 && attaque <= 4) {
+        entreeValide = 1; // Saisie correcte
+    } else {
+        printf("❌ Entrée invalide. Veuillez saisir un nombre entre 1 et 4.\n");
+        while (getchar() != '\n'); // Vider le buffer
+    }
 }
 
-void Start(Stat j1[], Stat j2[], int c, int joueur1, int joueur2) {
+    if (attaque == 1) {
+        j2[cible].pv -= j1[choix].damage1;
+    } else if (attaque == 2) {
+        j2[cible].pv -= j1[choix].damage2;
+    } else if (attaque == 3) {
+        j2[cible].pv -= j1[choix].spe;
+    } else {
+        j1[choix].pv += j1[choix].soin;
+        if (j1[choix].pv > j1[choix].pv) j1[choix].pv = j1[choix].pv;
+    }
+
+    if (j2[cible].pv <= 0) {
+        j2[cible].pv = 0;
+        (*joueur2)--;
+        printf("💀 %s est K.O. ! Joueur 2 a %d personnages restants.\n", j2[cible].nom, *joueur2);
+    }
+}
+
+void AttaqueJ2(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
+    int choix, cible, attaque;
+
+    choix = rand() % 3;
+    cible = rand() % 3;
+    while (j1[cible].pv <= 0 || j2[choix].pv <= 0) {
+      choix = rand() % 3;
+      cible = rand() % 3;
+    }
+
+    effacerEcran();
+    Affichage(j1, j2, c, cible, choix);
+
+    printf("🔫 MENU D'ATTAQUE 🔫\n");
+    printf("1 -> %s (%d dmg)\n", j2[choix].attaque1, j2[choix].damage1);
+    printf("2 -> %s (%d dmg)\n", j2[choix].attaque2, j2[choix].damage2);
+    printf("3 -> %s (%d dmg)\n", j2[choix].attaque3, j2[choix].spe);
+    printf("4 -> Soin (+%d pv)\n", j2[choix].soin);
+    printf("joueur2(%s) attaque joueur1(%s) avec: ", j2[choix].nom,
+        j1[cible].nom);
+    scanf("%d", &attaque);
+
+    if (attaque == 1) {
+        j1[cible].pv -= j2[choix].damage1;
+    } else if (attaque == 2) {
+        j1[cible].pv -= j2[choix].damage2;
+    } else if (attaque == 3) {
+        j1[cible].pv -= j2[choix].spe;
+    } else {
+        j2[choix].pv += j2[choix].soin;
+        if (j2[choix].pv > j2[choix].pv) j2[choix].pv = j2[choix].pv;
+    }
+
+    if (j1[cible].pv <= 0) {
+        j1[cible].pv = 0;
+        (*joueur1)--;
+        printf("💀 %s est K.O. ! Joueur 1 a %d personnages restants.\n", j1[cible].nom, *joueur1);
+    }
+}
+
+void Combat(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
+    int startFirst = rand() % 11;
+
+    while (*joueur1 > 0 && *joueur2 > 0) {
+        if (startFirst % 2 == 0) {
+            AttaqueJ1(j1, j2, joueur1, joueur2, c);
+            if (*joueur2 <= 0) break;
+            AttaqueJ2(j1, j2, joueur1, joueur2, c);
+        } else {
+            AttaqueJ2(j1, j2, joueur1, joueur2, c);
+            if (*joueur1 <= 0) break;
+            AttaqueJ1(j1, j2, joueur1, joueur2, c);
+        }
+    }
+
+    if (*joueur1 <= 0) {
+        printf("🎉 Joueur 2 a gagné 🏆\n");
+    } else {
+        printf("🎉 Joueur 1 a gagné 🏆\n");
+    }
+}
+
+void Start(Stat j1[], Stat j2[], int c, int *joueur1, int *joueur2) {
   Combat(j1, j2, joueur1, joueur2, c);
 }
 
@@ -273,6 +307,6 @@ int main(void) {
     exit(1);
   }
   // Affichage(j1, j2, choix, -1, -1);
-  Start(j1, j2, choix, joueur1, joueur2);
+  Start(j1, j2, choix, &joueur1, &joueur2);
   return 0;
 }
