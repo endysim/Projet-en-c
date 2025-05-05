@@ -150,7 +150,7 @@ void Affichage(Stat j1[], Stat j2[], int choix, int a, int c) {
         d2 = "";
       }
 
-      printf("-%s%s (pv: %d)%s                   %s-%s (pv: %d)%s\n", d1,j1[i].nom,
+      printf("-%s%s (pv: %d)%s                   %50s-%s (pv: %d)%s\n", d1,j1[i].nom,
              j1[i].pv, p1, p2, j2[i].nom, j2[i].pv,d2);
     }
   } else if (choix == 2) {
