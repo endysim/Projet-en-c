@@ -15,7 +15,13 @@ typedef struct {
   char attaque3[100];
   int attDelay3;
   int spe;
+  int speedAtt;
+  int strengh;
+  float counter;
   int soin;
+  int agility;
+  int reflex;
+  int speedDodge;
 } Stat;
 
 void effacerEcran() {
@@ -34,6 +40,12 @@ void Init(Stat j[]) {
   j[0].attDelay3 = 3;
   strcpy(j[0].attaque3, "Flèche empoisonnée");
   j[0].spe = 50;
+  j[0].speedAtt = 110;
+  j[0].strengh = 60;
+  j[0].counter = 85;
+  j[0].agility = 75;
+  j[0].reflex = 65;
+  j[0].speedDodge = 71;
   j[0].soin = 0;
 
   strcpy(j[1].nom, "GUERRIER");
@@ -46,6 +58,12 @@ void Init(Stat j[]) {
   j[1].attDelay3 = 3;
   strcpy(j[1].attaque3, "Coup de masse");
   j[1].spe = 30;
+  j[1].speedAtt = 70;
+  j[1].strengh = 100;
+  j[1].counter = 85;
+  j[1].agility = 40;
+  j[1].reflex = 30;
+  j[1].speedDodge = 36;
   j[1].soin = 0;
 
   strcpy(j[2].nom, "MAGE");
@@ -56,9 +74,15 @@ void Init(Stat j[]) {
   strcpy(j[2].attaque2, "Boule de glace");
   j[2].damage2 = 50;
   j[2].attDelay3 = 3;
-  strcpy(j[2].attaque3, "Boule de foudre");
+  strcpy(j[2].attaque3, "Super Boule de feu");
   j[2].spe = 60;
-  j[2].soin = 0;
+  j[2].speedAtt = 90;
+  j[2].strengh = 40;
+  j[2].counter = 65;
+  j[2].agility = 30;
+  j[2].reflex = 70;
+  j[2].speedDodge = 46;
+  j[2].soin = 20;
 
   strcpy(j[3].nom, "SOIGNER");
   j[3].pv = 100;
@@ -70,6 +94,12 @@ void Init(Stat j[]) {
   j[3].attDelay3 = 3;
   strcpy(j[3].attaque3, "Soin puissant");
   j[3].spe = 15;
+  j[3].speedAtt = 60;
+  j[3].strengh = 40;
+  j[3].counter = 50;
+  j[3].agility = 50;
+  j[3].reflex = 60;
+  j[3].speedDodge = 54;
   j[3].soin = 40;
 
   strcpy(j[4].nom, "SONIC");
@@ -82,6 +112,12 @@ void Init(Stat j[]) {
   j[4].attDelay3 = 3;
   strcpy(j[4].attaque3, "Spin dash");
   j[4].spe = 35;
+  j[4].speedAtt = 130;       // RAS
+  j[4].strengh = 70;         // RAS
+  j[4].counter = 100;        // OK
+  j[4].agility = 90;         // légèrement augmenté
+  j[4].reflex = 80;          // Sonic a des réflexes excellents
+  j[4].speedDodge = 86;
   j[4].soin = 5;
 
   strcpy(j[5].nom, "MARIO");
@@ -93,8 +129,87 @@ void Init(Stat j[]) {
   j[5].damage2 = 25;
   j[5].attDelay3 = 3;
   strcpy(j[5].attaque3, "Super saut");
+  j[5].speedAtt = 85;       // RAS
+  j[5].strengh = 80;         // RAS
+  j[5].counter = 82;        // OK
+  j[5].agility = 70;         // légèrement augmenté
+  j[5].reflex = 75;          // Sonic a des réflexes excellents
+  j[5].speedDodge = 72;
   j[5].spe = 35;
   j[5].soin = 10;
+
+  strcpy(j[6].nom, "NARUTO");
+  j[6].pv = 120;
+  strcpy(j[6].attaque1, "Rasengan");
+  j[6].damage1 = 28;
+  j[6].attDelay2 = 2;
+  strcpy(j[6].attaque2, "Clones de l’ombre");
+  j[6].damage2 = 20;
+  j[6].attDelay3 = 3;
+  strcpy(j[6].attaque3, "Mode Ermite");
+  j[6].speedAtt = 90;
+  j[6].strengh = 80;
+  j[6].counter = (j[6].speedAtt + j[6].strengh) / 2;
+  j[6].agility = 85;
+  j[6].reflex = 80;
+  j[6].speedDodge = j[6].agility * 0.6 + j[6].reflex * 0.4;
+  j[6].spe = 50;
+  j[6].soin = 15;
+
+  strcpy(j[7].nom, "ZORO");
+  j[7].pv = 130;
+  strcpy(j[7].attaque1, "Tranchant du démon");
+  j[7].damage1 = 30;
+  j[7].attDelay2 = 2;
+  strcpy(j[7].attaque2, "Tora Gari");
+  j[7].damage2 = 35;
+  j[7].attDelay3 = 3;
+  strcpy(j[7].attaque3, "Asura : Ichibugin");
+  j[7].speedAtt = 70;
+  j[7].strengh = 110;
+  j[7].counter = (j[7].speedAtt + j[7].strengh) / 2;
+  j[7].agility = 60;
+  j[7].reflex = 50;
+  j[7].speedDodge = j[7].agility * 0.6 + j[7].reflex * 0.4;
+  j[7].spe = 60;
+  j[7].soin = 5;
+
+  strcpy(j[8].nom, "ITACHI");
+  j[8].pv = 100;
+  strcpy(j[8].attaque1, "Shuriken");
+  j[8].damage1 = 18;
+  j[8].attDelay2 = 2;
+  strcpy(j[8].attaque2, "Amaterasu");
+  j[8].damage2 = 35;
+  j[8].attDelay3 = 3;
+  strcpy(j[8].attaque3, "Tsukuyomi");
+  j[8].speedAtt = 95;
+  j[8].strengh = 65;
+  j[8].counter = (j[8].speedAtt + j[8].strengh) / 2;
+  j[8].agility = 75;
+  j[8].reflex = 95;
+  j[8].speedDodge = j[8].agility * 0.6 + j[8].reflex * 0.4;
+  j[8].spe = 60;
+  j[8].soin = 10;
+
+  strcpy(j[9].nom, "AIZEN");
+  j[9].pv = 125;
+  strcpy(j[9].attaque1, "Coup de sabre");
+  j[9].damage1 = 22;
+  j[9].attDelay2 = 2;
+  strcpy(j[9].attaque2, "Hadō 90 : Kurohitsugi");
+  j[9].damage2 = 40;
+  j[9].attDelay3 = 3;
+  strcpy(j[9].attaque3, "Kyoka Suigetsu");
+  j[9].speedAtt = 80;
+  j[9].strengh = 90;
+  j[9].counter = (j[9].speedAtt + j[9].strengh) / 2;
+  j[9].agility = 70;
+  j[9].reflex = 85;
+  j[9].speedDodge = j[9].agility * 0.6 + j[9].reflex * 0.4;
+  j[9].spe = 70;
+  j[9].soin = 5;
+
 }
 void Liste(Stat j[], int n) {
   printf("Liste des personnages :\n");
@@ -107,7 +222,7 @@ void Liste(Stat j[], int n) {
     printf("| %-20s: %3d |                | %-20s: %3d |\n", j[i].attaque3, j[i].spe, j[i + 1].attaque3, j[i + 1].spe);
     printf("| soin:   %17d |                | soin:   %17d |\n", j[i].soin, j[i + 1].soin);
     printf("\n");
-}
+  }
 
 }
 
@@ -116,7 +231,7 @@ void ChoixJoueur(Stat dest[], Stat source[]) {
   printf("Entrez les numéros des 3 personnages à choisir (0 à 5) : ");
   scanf("%d %d %d", &p1, &p2, &p3);
 
-  if (p1 < 0 || p1 > 5 || p2 < 0 || p2 > 5 || p3 < 0 || p3 > 5) {
+  if (p1 < 0 || p1 > 9 || p2 < 0 || p2 > 9 || p3 < 0 || p3 > 9) {
     printf("Erreur : numéro invalide.\n");
     exit(1);
   }
@@ -149,16 +264,67 @@ void Affichage(Stat j1[], Stat j2[], int choix, int a, int c) {
   } else if (choix == 2) {
     printf("Joueur 1:                         Bot:\n");
     for (int i = 0; i < 3; i++) {
-      printf("-%s (pv: %d)                   -%s (pv: %d)\n", j1[i].nom,
-             j1[i].pv, j2[i].nom, j2[i].pv);
+      if (a == i) p1 = "💥"; else p1 = "  ";
+      if (c == i) p2 = "💥"; else p2 = "  ";
+      if (j1[i].pv <= 0) d1 = "💀"; else d1 = "  ";
+      if (j2[i].pv <= 0) d2 = "💀"; else d2 = "  ";
+  
+      // Nom formaté à largeur fixe (ex: 10 caractères max, ajustable)
+      printf("-%s%-10s (pv: %3d) %s    |    %s-%-10s (pv: %3d)%s\n",
+             d1, j1[i].nom, j1[i].pv, p1,
+             p2, j2[i].nom, j2[i].pv, d2);
     }
   }
   printf("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\n");
 }
 
+void Esquive(Stat att[], Stat cib[], int choixDefense, int degats, int choixAttack, int choixCible)
+{
+    switch(choixDefense)
+    {
+        case 1: // Esquive basée sur speedDodge
+            if (att[choixAttack].speedAtt < cib[choixCible].speedDodge) {
+                printf("💨 %s esquive l'attaque avec grâce !\n", cib[choixCible].nom);
+                cib[choixCible].pv += degats;
+            } else {
+                printf("❌ %s rate son esquive et prend les dégâts.\n", cib[choixCible].nom);
+            }
+            break;
+
+        case 2: // Blocage
+          if(cib[choixCible].strengh >= att[choixAttack].strengh){
+
+            printf("🛡️ %s bloque l'attaque et réduit les dégâts à %d !\n", cib[choixCible].nom, cib[choixCible].strengh - att[choixAttack].strengh);
+            cib[choixCible].pv += (degats * (att[choixAttack].strengh/cib[choixCible].strengh));
+          }else{
+            printf("%s n'est pas assez fort pour bloquer l'attaque!", cib[choixCible].nom);
+          }
+
+          break;
+
+        case 3: // Contre-attaque si assez rapide
+            if (cib[choixCible].counter > att[choixAttack].speedAtt) {
+                printf("⚔️ %s contre-attaque avec %s !\n", cib[choixCible].nom, cib[choixCible].attaque1);
+                cib[choixCible].pv += degats;
+                att[choixAttack].pv -= cib[choixCible].damage1;
+            } else {
+                printf("❌ %s tente de contre-attaquer, mais échoue !\n", cib[choixCible].nom);
+            }
+            break;
+
+        case 4: // Ne rien faire
+            printf("😐 %s ne fait rien et encaisse l'attaque.\n", cib[choixCible].nom);
+            break;
+
+        default:
+            printf("❌ Choix invalide. %s prend l'attaque en pleine face !\n", cib[choixCible].nom);
+            break;
+    }
+}
+
 
 void AttaqueJ1(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
-    int choix, cible, attaque;
+    int choix, cible, attaque, defence;
 
     choix = rand() % 3;
     cible = rand() % 3;
@@ -205,14 +371,35 @@ void AttaqueJ1(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
         entreeValide = 1;
     
     } while (!entreeValide);
+
+    if(c == 1)
+    {
+      if(attaque != 4){
+        printf("%s doit choisir une action défensive :\n", j2[cible].nom);
+        printf("1. Esquiver\n");
+        printf("2. Bloquer\n");
+        printf("3. Contre-attaquer\n");
+        printf("4. Ne rien faire\n");
+        printf("Votre choix : ");
+        scanf("%d", &defence);
+      }
+    }else{
+      if(attaque != 4){
+        defence = (rand() % 4) + 1;
+        printf("\n");
+      }
+    }
     
 
     if (attaque == 1) {
+        Esquive(j1, j2, defence, j1[choix].damage1, choix, cible);
         j2[cible].pv -= j1[choix].damage1;
     } else if (attaque == 2 && j1[choix].attDelay2 <= 0) {
+        Esquive(j1, j2, defence, j1[choix].damage2, choix, cible);
         j2[cible].pv -= j1[choix].damage2;
         j1[choix].attDelay2 = 2;
     } else if (attaque == 3 && j1[choix].attDelay3 <= 0) {
+        Esquive(j1, j2, defence, j1[choix].spe, choix, cible);
         j2[cible].pv -= j1[choix].spe;
         j1[choix].attDelay3 = 3;
     } else {
@@ -234,10 +421,15 @@ void AttaqueJ1(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
         (*joueur2)--;
         printf("💀 %s est K.O. ! Joueur 2 a %d personnages restants.\n", j2[cible].nom, *joueur2);
     }
+    if (j1[choix].pv <= 0) {
+        j1[choix].pv = 0;
+        (*joueur1)--;
+        printf("💀 %s est K.O. ! Joueur 2 a %d personnages restants.\n", j1[choix].nom, *joueur1);
+    }
 }
 
 void AttaqueJ2(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
-    int choix, cible, attaque;
+    int choix, cible, attaque, defence;
 
     choix = rand() % 3;
     cible = rand() % 3;
@@ -256,42 +448,53 @@ void AttaqueJ2(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
     printf("4 -> Soin (+%d pv)\n", j2[choix].soin);
     int entreeValide = 0;
 
-do {
-    printf("joueur2 (%s) attaque joueur1 (%s) avec : ", j2[choix].nom, j1[cible].nom);
+  do {
+      printf("joueur2 (%s) attaque joueur1 (%s) avec : ", j2[choix].nom, j1[cible].nom);
 
-    if (scanf("%d", &attaque) != 1) {
-        printf("❌ Entrée invalide. Veuillez saisir un nombre entre 1 et 4.\n");
-        while (getchar() != '\n'); // Vider le buffer
-        continue;
-    }
+      if (scanf("%d", &attaque) != 1) {
+          printf("❌ Entrée invalide. Veuillez saisir un nombre entre 1 et 4.\n");
+          while (getchar() != '\n'); // Vider le buffer
+          continue;
+      }
 
-    if (attaque < 1 || attaque > 4) {
-        printf("❌ Veuillez saisir un nombre entre 1 et 4.\n");
-        continue;
-    }
+      if (attaque < 1 || attaque > 4) {
+          printf("❌ Veuillez saisir un nombre entre 1 et 4.\n");
+          continue;
+      }
 
-    if (attaque == 2 && j2[choix].attDelay2 > 0) {
-        printf("❌ Vous ne pouvez pas encore utiliser %s (rechargement en cours).\n", j1[choix].attaque2);
-        continue;
-    }
+      if (attaque == 2 && j2[choix].attDelay2 > 0) {
+          printf("❌ Vous ne pouvez pas encore utiliser %s (rechargement en cours).\n", j2[choix].attaque2);
+          continue;
+      }
 
-    if (attaque == 3 && j2[choix].attDelay3 > 0) {
-        printf("❌ Vous ne pouvez pas encore utiliser %s (rechargement en cours).\n", j1[choix].attaque3);
-        continue;
-    }
+      if (attaque == 3 && j2[choix].attDelay3 > 0) {
+          printf("❌ Vous ne pouvez pas encore utiliser %s (rechargement en cours).\n", j2[choix].attaque3);
+          continue;
+      }
 
-    // Si on arrive ici, l'entrée est valide
-    entreeValide = 1;
+      // Si on arrive ici, l'entrée est valide
+      entreeValide = 1;
 
-} while (!entreeValide);
+  } while (!entreeValide);
+
+    printf("%s doit choisir une action défensive :\n", j1[cible].nom);
+    printf("1. Esquiver\n");
+    printf("2. Bloquer\n");
+    printf("3. Contre-attaquer\n");
+    printf("4. Ne rien faire\n");
+    printf("Votre choix : ");
+    scanf("%d", &defence);
 
 
     if (attaque == 1) {
+        Esquive(j2, j1, defence, j2[choix].damage1, choix, cible);
         j1[cible].pv -= j2[choix].damage1;
     } else if (attaque == 2 && j2[choix].attDelay2 <= 0) {
+        Esquive(j2, j1, defence, j2[choix].damage2, choix, cible);
         j1[cible].pv -= j2[choix].damage2;
         j2[choix].attDelay2 = 2;
     } else if (attaque == 3 && j2[choix].attDelay3 <= 0) {
+        Esquive(j2, j1, defence, j2[choix].spe, choix, cible);
         j1[cible].pv -= j2[choix].spe;
         j2[choix].attDelay3 = 3;
     } else {
@@ -313,12 +516,119 @@ do {
         (*joueur1)--;
         printf("💀 %s est K.O. ! Joueur 1 a %d personnages restants.\n", j1[cible].nom, *joueur1);
     }
+    if (j2[choix].pv <= 0) {
+        j2[choix].pv = 0;
+        (*joueur2)--;
+        printf("💀 %s est K.O. ! Joueur 2 a %d personnages restants.\n", j2[choix].nom, *joueur2);
+    }
+}
+
+void AttaqueBot(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
+    int choix, cible, attaque, defence;
+
+    choix = rand() % 3;
+    cible = rand() % 3;
+    while (j1[cible].pv <= 0 || j2[choix].pv <= 0) {
+      choix = rand() % 3;
+      cible = rand() % 3;
+    }
+
+    effacerEcran();
+    Affichage(j1, j2, c, cible, choix);
+
+    printf("🔫 MENU D'ATTAQUE 🔫\n");
+    printf("1 -> %s (%d dmg)\n", j2[choix].attaque1, j2[choix].damage1);
+    printf("2 -> %s(%d) (%d dmg)\n", j2[choix].attaque2, j2[choix].attDelay2, j2[choix].damage2);
+    printf("3 -> %s(%d) (%d dmg)\n", j2[choix].attaque3, j2[choix].attDelay3, j2[choix].spe);
+    printf("4 -> Soin (+%d pv)\n", j2[choix].soin);
+    int entreeValide = 0;
+
+  do {
+      attaque = (rand() % 4) + 1;
+
+      if (attaque < 1 || attaque > 4) {
+          continue;
+      }
+
+      if (attaque == 2 && j2[choix].attDelay2 > 0) {
+          continue;
+      }
+
+      if (attaque == 3 && j2[choix].attDelay3 > 0) {
+          continue;
+      }
+
+      // Si on arrive ici, l'entrée est valide
+      entreeValide = 1;
+      if(attaque == 1){
+        printf("Bot (%s) attaque joueur1 (%s) avec : %s", j2[choix].nom, j1[cible].nom, j2[choix].attaque1);
+        printf("\n");
+      }else if(attaque == 2){
+        printf("Bot (%s) attaque joueur1 (%s) avec : %s", j2[choix].nom, j1[cible].nom, j2[choix].attaque2);
+        printf("\n");
+      }else if(attaque == 3){
+        printf("Bot (%s) attaque joueur1 (%s) avec : %s", j2[choix].nom, j1[cible].nom, j2[choix].attaque3);
+        printf("\n");
+      }else if(attaque == 4){
+        printf("Bot (%s) se soigne", j2[choix].nom);
+        printf("\n");
+      }
+
+  } while (!entreeValide);
+
+    if(attaque != 4){
+      printf("%s doit choisir une action défensive :\n", j1[cible].nom);
+      printf("1. Esquiver\n");
+      printf("2. Bloquer\n");
+      printf("3. Contre-attaquer\n");
+      printf("4. Ne rien faire\n");
+      printf("Votre choix : ");
+      scanf("%d", &defence);
+    }
+
+    if (attaque == 1) {
+        Esquive(j2, j1, defence, j2[choix].damage1, choix, cible);
+        j1[cible].pv -= j2[choix].damage1;
+    } else if (attaque == 2 && j2[choix].attDelay2 <= 0) {
+        Esquive(j2, j1, defence, j2[choix].damage2, choix, cible);
+        j1[cible].pv -= j2[choix].damage2;
+        j2[choix].attDelay2 = 2;
+    } else if (attaque == 3 && j2[choix].attDelay3 <= 0) {
+        Esquive(j2, j1, defence, j2[choix].spe, choix, cible);
+        j1[cible].pv -= j2[choix].spe;
+        j2[choix].attDelay3 = 3;
+    } else {
+        j2[choix].pv += j2[choix].soin;
+        if (j2[choix].pv > j2[choix].pv) j2[choix].pv = j2[choix].pv;
+    }
+
+    for(int i = 0; i < 3; i++){
+      if(j1[i].attDelay2 > 0){
+        j1[i].attDelay2--;
+      }
+      if(j1[i].attDelay3 > 0){
+        j1[i].attDelay3--;
+      }
+    }
+
+    if (j1[cible].pv <= 0) {
+        j1[cible].pv = 0;
+        (*joueur1)--;
+        printf("💀 %s est K.O. ! Joueur 1 a %d personnages restants.\n", j1[cible].nom, *joueur1);
+    }
+    if (j2[choix].pv <= 0) {
+        j2[choix].pv = 0;
+        (*joueur2)--;
+        printf("💀 %s est K.O. ! Bot a %d personnages restants.\n", j2[choix].nom, *joueur2);
+    }
 }
 
 void Combat(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
     int startFirst = rand() % 11;
 
     while (*joueur1 > 0 && *joueur2 > 0) {
+      if(c == 1)
+      {
         if (startFirst % 2 == 0) {
             AttaqueJ1(j1, j2, joueur1, joueur2, c);
             if (*joueur2 <= 0) break;
@@ -328,12 +638,31 @@ void Combat(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
             if (*joueur1 <= 0) break;
             AttaqueJ1(j1, j2, joueur1, joueur2, c);
         }
+      }
+      else{
+        if (startFirst % 2 == 0) {
+            AttaqueJ1(j1, j2, joueur1, joueur2, c);
+            if (*joueur2 <= 0) break;
+            AttaqueBot(j1, j2, joueur1, joueur2, c);
+        } else {
+            AttaqueBot(j1, j2, joueur1, joueur2, c);
+            if (*joueur1 <= 0) break;
+            AttaqueJ1(j1, j2, joueur1, joueur2, c);
+        }
+      }
     }
-
-    if (*joueur1 <= 0) {
+    if(c == 1){
+      if (*joueur1 <= 0) {
         printf("🎉 Joueur 2 a gagné 🏆\n");
-    } else {
+      } else {
         printf("🎉 Joueur 1 a gagné 🏆\n");
+      }
+    }else{
+      if (*joueur1 <= 0) {
+        printf("🎉 Le Bot a gagné 🏆\n");
+      } else {
+        printf("🎉 Joueur 1 a gagné 🏆\n");
+      }
     }
 }
 
@@ -343,7 +672,7 @@ void Start(Stat j1[], Stat j2[], int c, int *joueur1, int *joueur2) {
 
 int main(void) {
   srand(time(NULL));
-  Stat joueurs[5]; // 4 personnages
+  Stat joueurs[10]; // 4 personnages
   int joueur1 = 3, joueur2 = 3;
   Stat j1[3], j2[3];
   int choix;
@@ -353,7 +682,7 @@ int main(void) {
   printf("1 -> Joueur 2      2 -> Bot\n");
   printf("Adversaire : ");
   scanf("%d", &choix);
-  Liste(joueurs, 4);
+  Liste(joueurs, 8);
   if (choix == 1 || choix == 2) {
     printf("Choix joueur 1 :\n");
     ChoixJoueur(j1, joueurs);
