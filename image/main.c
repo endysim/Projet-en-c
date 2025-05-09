@@ -7,9 +7,9 @@
 
 #define Largeur 96
 #define Hauteur 96
-#define GRID_COLS 3
-#define GRID_ROWS 3
-#define NUM_CHARACTERS 9
+#define COLONNE 3
+#define LIGNE 3
+#define NOMBRE_PERSO 9
 
 typedef struct {
     SDL_Rect pos;
@@ -58,12 +58,12 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    int screenWidth = GRID_COLS * Largeur;
-    int screenHeight = GRID_ROWS * Hauteur;
+    int largeur_ecran = COLONNE * Largeur;
+    int hauteur_ecran = LIGNE * Hauteur;
 
     SDL_Window* fenetre = SDL_CreateWindow("Sélection de Personnages",
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-        screenWidth, screenHeight, SDL_WINDOW_SHOWN);
+        largeur_ecran, hauteur_ecran, SDL_WINDOW_SHOWN);
 
     if (!fenetre) {
         printf("Erreur création fenêtre : %s\n", SDL_GetError());
@@ -82,17 +82,17 @@ int main(int argc, char* argv[]) {
         return 1;
     }
     // Liste des chemins d’images pour chaque personnage
-    const char* imagePaths[NUM_CHARACTERS] = {
+    const char* imagePaths[NOMBRE_PERSO] = {
         "aizen_sel.png", "archer_sel.png", "itachi_sel.png",
         "naruto_sel.png", "shoto_sel.png", "sonic_sel.png",
         "Zoro_sel.png", "guerrier_sel.png", "soigneur_sel.png"
     };
 
-    Guerrier guerriers[NUM_CHARACTERS];
+    Guerrier guerriers[NOMBRE_PERSO];
     int index = 0;
 
-    for (int ligne = 0; ligne < GRID_ROWS; ++ligne) {
-        for (int col = 0; col < GRID_COLS; ++col) {
+    for (int ligne = 0; ligne < LIGNE; ++ligne) {
+        for (int col = 0; col < COLONNE; ++col) {
             int x = col * Largeur;
             int y = ligne * Hauteur;
             guerriers[index] = createGuerrier(moteur, imagePaths[index], x, y);
@@ -112,7 +112,7 @@ int main(int argc, char* argv[]) {
         SDL_SetRenderDrawColor(moteur, 20, 20, 20, 255);
         SDL_RenderClear(moteur);
 
-        for (int i = 0; i < NUM_CHARACTERS; ++i) {
+        for (int i = 0; i < NOMBRE_PERSO; ++i) {
             renderGuerrier(moteur, &guerriers[i]);
         }
 
@@ -121,7 +121,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Libération mémoire
-    for (int i = 0; i < NUM_CHARACTERS; ++i) {
+    for (int i = 0; i < NOMBRE_PERSO; ++i) {
         SDL_DestroyTexture(guerriers[i].texture);
     }
 
