@@ -1,4 +1,3 @@
-#define STB_IMAGE_WRITE_IMPLEMENTATION
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "stb_image_write.h"
