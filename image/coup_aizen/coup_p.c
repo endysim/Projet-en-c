@@ -47,7 +47,7 @@ Personnage creerPersonnage(SDL_Renderer* rendu, int x, int y) {
     p.dernier_changement = SDL_GetTicks(); // Initialiser avec l'heure actuelle
 
     // Charger les images
-    p.repos = chargerTexture(rendu, "aizen_sel.jpeg");
+    p.repos = chargerTexture(rendu,"aizen_sel.jpeg");
 
     char chemin[100];
     for (int attaque = 0; attaque < 3; ++attaque) {
