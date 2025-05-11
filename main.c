@@ -743,9 +743,46 @@ void Combat(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
 void Start(Stat j1[], Stat j2[], int c, int *joueur1, int *joueur2) {
   Combat(j1, j2, joueur1, joueur2, c);
 }
+void afficherBarreVie(int pv, int maxPV) {
+  int barres = (pv * 20) / maxPV;
+  printf("[");
+  for (int i = 0; i < 20; i++) {
+    if (i < barres) {
+      if (barres > 14) printf("\033[32m█"); // vert
+      else if (barres > 7) printf("\033[33m█"); // jaune
+      else printf("\033[31m█"); // rouge
+    } else {
+      printf("\033[0m "); // vide
+    }
+  }
+  printf("\033[0m] \033[1m(%d PV)\033[0m\n", pv);
+}
+
+
+void ecranAccueil() {
+    system("clear"); // ou "cls" sous Windows
+
+    printf("\033[1;32m"); // Vert clair pour le cadre
+    printf("╔═════════════════════════════════════════════════════════════════════════════╗\n");
+    printf("║\033[1;36m                         BIENVENUE DANS                                      \033[1;32m║\n");
+    printf("║\033[1;34m       ██████╗ ██╗   ██╗    ███████╗██╗ ██████╗ ██╗   ██╗████████╗           \033[1;32m║\n");
+    printf("║\033[1;34m      ██╔═══██╗╚██╗ ██╔╝    ██╔════╝██║██╔═══██ ██║   ██║   ██ ╔═╝           \033[1;32m║\n");
+    printf("║\033[1;34m      ██║       ╚████╔╝     █████╗  ██║██║ ___  ████████║   ██ ║             \033[1;32m║\n");
+    printf("║\033[1;34m      ██║   ██║  ╚██╔╝      ██╔══╝  ██║██║   ██║██║   ██║   ██ ║             \033[1;32m║\n");
+    printf("║\033[1;34m      ╚██████╔╝   ██║       ██║     ██║╚██████╔╝██║   ██║   ██ ║             \033[1;32m║\n");
+    printf("║\033[1;34m       ╚═════╝    ╚═╝       ╚═╝     ╚═╝ ╚═════╝ ╚═╝   ╚═╝    ╚═╝             \033[1;32m║\n");
+    printf("╚═════════════════════════════════════════════════════════════════════════════╝\n");
+    
+    printf("\033[1;33m\n");
+    printf("                  Appuyez sur Entrée pour commencer...\n");
+    printf("\033[0m"); // Réinitialisation couleur
+
+    getchar();
+}
 
 int main(void) {
   srand(time(NULL));
+  ecranAccueil();
   Stat joueurs[10]; // 4 personnages
   int joueur1 = 3, joueur2 = 3;
   Stat j1[3], j2[3];
