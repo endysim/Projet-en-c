@@ -103,6 +103,9 @@ void Intro() {
     sleep(2);
 }
 
+void afficherBarreVie(int pv, int maxPV);
+void Affichage(Stat j1[], Stat j2[], int choix, int a, int c);
+
 void Init(Stat j[]) {
   strcpy(j[0].nom, "ARCHER");
   j[0].pv = 100;
