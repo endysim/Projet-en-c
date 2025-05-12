@@ -316,24 +316,31 @@ void ChoixJoueur(Stat dest[], Stat source[]) {
 }
 
 void Affichage(Stat j1[], Stat j2[], int choix, int a, int c) {
-  char *d1 = "";
-  char *d2 = "";
   char *p1 = "";
   char *p2 = "";
-  printf("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\n");
+  printf("\033[1;44m🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\033[0m\n");
   if (choix == 1) {
-    printf("Joueur 1:                          Joueur 2:\n");
+    printf("\033[1mJoueur 1:                          Joueur 2:\033[0m\n");
     for (int i = 0; i < 3; i++) {
-      if (a == i) p1 = "💥"; else p1 = "  ";
-      if (c == i) p2 = "💥"; else p2 = "  ";
-      if (j1[i].pv <= 0) d1 = "💀"; else d1 = "  ";
-      if (j2[i].pv <= 0) d2 = "💀"; else d2 = "  ";
-  
-      // Nom formaté à largeur fixe (ex: 10 caractères max, ajustable)
-      printf("-%s%-10s (pv: %3d) %s    |    %s-%-10s (pv: %3d)%s\n",
-             d1, j1[i].nom, j1[i].pv, p1,
-             p2, j2[i].nom, j2[i].pv, d2);
+      p1 = (a == i) ? "💥" : "";
+      p2 = (c == i) ? "💥" : "";
+      printf("-%s%s                         %s-%s\n", j1[i].nom, p1, p2, j2[i].nom);
+      afficherBarreVie(j1[i].pv, 150);
+      printf("                             ");
+      afficherBarreVie(j2[i].pv, 150);
+    }
+  } else if (choix == 2) {
+    printf("\033[1mJoueur 1:                         Bot:\033[0m\n");
+    for (int i = 0; i < 3; i++) {
+      printf("-%s                         -%s\n", j1[i].nom, j2[i].nom);
+      afficherBarreVie(j1[i].pv, 150);
+      printf("                             ");
+      afficherBarreVie(j2[i].pv, 150);
+    }
   }
+  printf("\033[1;44m🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\033[0m\n");
+}
+
   
   } else if (choix == 2) {
     printf("Joueur 1:                         Bot:\n");
