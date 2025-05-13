@@ -695,6 +695,97 @@ void Init(Stat j[]) {
   j[7].soin = 5;
 
 }
+void AttAnim(int index, int att){
+  if(index == 0){
+    if(att == 1){
+      archer1Att();
+    }
+    else if(att == 2){
+      archer2Att();
+    }
+    else if(att == 3){
+      archer3Att();
+    }
+  }
+   else if(index == 1){
+      if(att == 1){
+        guerrier1Att();
+      }
+    
+      else if(att == 2){
+      guerrier2Att();
+    }
+      else if(att == 3){
+        guerrier3Att();
+    }
+  }
+   else if(index == 2){
+      if(att == 1){
+      shoto1Att();
+      }
+      else if(att == 2){
+      shoto2Att();
+    }
+      else if(att == 3){
+      shoto3Att();
+    }
+  }
+  else if(index == 3){
+      if(att == 1){
+      sonic1Att();
+      }
+      else if(att == 2){
+      sonic2Att();
+    }
+      else if(att == 3){
+      sonic3Att();
+    }
+  }
+  else if(index == 4){
+      if(att == 1){
+      naruto1Att();
+      }
+      else if(att == 2){
+      naruto2Att();
+    }
+      else if(att == 3){
+      naruto3Att();
+    }
+  }
+  else if(index == 5){
+      if(att == 1){
+      zoro1Att();
+      }
+      else if(att == 2){
+      zoro2Att();
+    }
+      else if(att == 3){
+      zoro3Att();
+    }
+  }
+  else if(index == 6){
+      if(att == 1){
+      itachi1Att();
+      }
+      else if(att == 2){
+        itachi2Att();
+      }
+      else if(att == 3){
+        itachi3Att();
+      }
+  }
+  else if(index == 7){
+      if(att == 1){
+      aizen1Att();
+      }
+      else if(att == 2){
+      aizen2Att();
+    }
+      else if(att == 3){
+      aizen3Att();
+    }
+  }
+}
 void Liste(Stat j[], int n) {
   printf("Liste des personnages :\n");
 
