@@ -812,7 +812,7 @@ void Liste(Stat j[], int n) {
 // fonction qui gère la sélection des personnages par les joueurs
 void ChoixJoueur(Stat dest[], Stat source[]) {
   int p1, p2, p3;
-  printf("Entrez les numéros des 3 personnages à choisir (0 à 5) : ");
+  printf("Entrez les numéros des 3 personnages à choisir (0 à 7) : ");
   scanf("%d %d %d", &p1, &p2, &p3);
 
   if (p1 < 0 || p1 > 7 || p2 < 0 || p2 > 7 || p3 < 0 || p3 > 7) {
