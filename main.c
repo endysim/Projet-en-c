@@ -258,6 +258,283 @@ void shoto3Att(){
 
 }
 
+void aizen1Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc aizen1.c -o aizen1 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_1...\n");
+    int resultat_execution = system("./aizen1");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+
+}
+void aizen2Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc aizen2.c -o aizen2 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_2...\n");
+    int resultat_execution = system("./aizen2");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+
+}
+void aizen3Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc aizen3.c -o aizen3 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_3...\n");
+    int resultat_execution = system("./aizen3");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+
+}
+void archer1Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc archer1.c -o archer1 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_1...\n");
+    int resultat_execution = system("./archer1");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+
+}
+
+void archer2Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc archer2.c -o archer2 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_2...\n");
+    int resultat_execution = system("./archer2");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+}
+void archer3Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc archer3.c -o archer3 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_3...\n");
+    int resultat_execution = system("./archer3");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+}
+void itachi1Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc itachi1.c -o itachi1 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_1...\n");
+    int resultat_execution = system("./itachi1");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+
+}
+void itachi2Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc itachi2.c -o itachi2 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_2...\n");
+    int resultat_execution = system("./itachi2");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+}
+void itachi3Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc itachi3.c -o itachi1 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_3...\n");
+    int resultat_execution = system("./itachi3");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+}
+void naruto1Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc naruto1.c -o naruto1 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_1...\n");
+    int resultat_execution = system("./naruto1");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+}
+void naruto2Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc naruto2.c -o naruto2 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_2...\n");
+    int resultat_execution = system("./naruto2");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+}
+void naruto3Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc naruto3.c -o naruto3 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_3...\n");
+    int resultat_execution = system("./naruto3");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+}
+void sonic1Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc sonic1.c -o sonic1 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_1...\n");
+    int resultat_execution = system("./sonic1");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+}
+void sonic2Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc sonic2.c -o sonic2 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_2...\n");
+    int resultat_execution = system("./sonic2");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+}
+void sonic3Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc sonic3.c -o sonic3 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_3...\n");
+    int resultat_execution = system("./sonic3");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+}
+
 void Intro() {
 
   effacerEcran();
