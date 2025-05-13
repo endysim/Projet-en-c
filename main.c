@@ -806,7 +806,7 @@ void ChoixJoueur(Stat dest[], Stat source[]) {
   printf("Entrez les numéros des 3 personnages à choisir (0 à 5) : ");
   scanf("%d %d %d", &p1, &p2, &p3);
 
-  if (p1 < 0 || p1 > 9 || p2 < 0 || p2 > 9 || p3 < 0 || p3 > 9) {
+  if (p1 < 0 || p1 > 7 || p2 < 0 || p2 > 7 || p3 < 0 || p3 > 7) {
     printf("Erreur : numéro invalide.\n");
     exit(1);
   }
@@ -1283,7 +1283,7 @@ int main(void) {
   printf("1 -> Joueur 2      2 -> Bot\n");
   printf("Adversaire : ");
   scanf("%d", &choix);
-  Liste(joueurs, 8);
+  Liste(joueurs, 6);
   if (choix == 1 || choix == 2) {
     printf("Choix joueur 1 :\n");
     ChoixJoueur(j1, joueurs);
