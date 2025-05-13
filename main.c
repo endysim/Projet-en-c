@@ -78,6 +78,186 @@ void ecranAccueil() {
     getchar();
 }
 
+void zoro1Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc zoro1.c -o zoro1 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_1...\n");
+    int resultat_execution = system("./zoro1");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+
+}
+
+void zoro2Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc zoro2.c -o zoro2 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_1...\n");
+    int resultat_execution = system("./zoro2");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+
+}
+
+void zoro3Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc zoro3.c -o zoro3 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_1...\n");
+    int resultat_execution = system("./zoro3");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+
+}
+
+void guerrier1Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc guerrier1.c -o guerrier1 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_1...\n");
+    int resultat_execution = system("./guerrier1");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+
+}
+
+void guerrier2Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc guerrier2.c -o guerrier2 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_1...\n");
+    int resultat_execution = system("./guerrier2");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+
+}
+
+void guerrier3Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc guerrier3.c -o guerrier3 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_1...\n");
+    int resultat_execution = system("./guerrier3");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+
+}
+
+void shoto1Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc shoto1.c -o shoto1 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_1...\n");
+    int resultat_execution = system("./shoto1");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+
+}
+
+void shoto2Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc shoto2.c -o shoto2 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_1...\n");
+    int resultat_execution = system("./shoto2");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+
+}
+
+void shoto3Att(){
+   // Compilation (si ce n'est pas déjà fait)
+    int resultat_compilation = system("gcc shoto3.c -o shoto3 $(sdl2-config --cflags --libs) -lSDL2_image");
+   
+    if (resultat_compilation != 0) {
+        printf("Erreur lors de la compilation\n");
+    }
+   
+    // Exécution
+    printf("Lancement de l'animation ATTAQUE_1...\n");
+    int resultat_execution = system("./shoto3");
+   
+    if (resultat_execution == 0) {
+        printf("Animation terminée avec succès\n");
+    } else {
+        printf("Erreur lors de l'exécution\n");
+    }
+
+}
+
 void Intro() {
 
   effacerEcran();
