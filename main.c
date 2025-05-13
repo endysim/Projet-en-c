@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
-#include <unistd.h> // Pour sleep()
+#include <unistd.h>
 
 typedef struct {
   int pv;
@@ -23,7 +23,7 @@ typedef struct {
   int agility;
   int reflex;
   int speedDodge;
-int index;
+  int index;
 } Stat;
 
 void effacerEcran() {
@@ -59,8 +59,6 @@ void sonicDraw(){
 }
 
 void ecranAccueil() {
-    system("clear"); // ou "cls" sous Windows
-
     printf("\033[1;32m"); // Vert clair pour le cadre
     printf("╔═════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║\033[1;36m                         BIENVENUE DANS                                      \033[1;32m║\n");
@@ -411,7 +409,7 @@ void itachi2Att(){
 }
 void itachi3Att(){
    // Compilation (si ce n'est pas déjà fait)
-    int resultat_compilation = system("gcc itachi3.c -o itachi1 $(sdl2-config --cflags --libs) -lSDL2_image");
+    int resultat_compilation = system("gcc itachi3.c -o itachi3 $(sdl2-config --cflags --libs) -lSDL2_image");
    
     if (resultat_compilation != 0) {
         printf("Erreur lors de la compilation\n");
@@ -565,6 +563,7 @@ void Init(Stat j[]) {
   j[0].reflex = 65;
   j[0].speedDodge = 71;
   j[0].soin = 0;
+  j[0].index = 0;
 
   strcpy(j[1].nom, "GUERRIER");
   j[1].pv = 150;
@@ -612,7 +611,7 @@ void Init(Stat j[]) {
   strcpy(j[3].attaque2, "Bouclier destructeur");
   j[3].damage2 = 25;
   j[3].attDelay3 = 3;
-  strcpy(j[4].attaque3, "Spin dash");
+  strcpy(j[3].attaque3, "Spin dash");
   j[3].spe = 35;
   j[3].speedAtt = 130;
   j[3].strengh = 70;
@@ -621,13 +620,14 @@ void Init(Stat j[]) {
   j[3].reflex = 80;
   j[3].speedDodge = 86;
   j[3].soin = 5;
+  j[3].index = 3;
 
   strcpy(j[4].nom, "NARUTO");
   j[4].pv = 120;
   strcpy(j[4].attaque1, "Rasengan");
   j[4].damage1 = 28;
   j[4].attDelay2 = 2;
-  strcpy(j[6].attaque2, "Clones de l’ombre");
+  strcpy(j[4].attaque2, "Clones de l’ombre");
   j[4].damage2 = 20;
   j[4].attDelay3 = 3;
   strcpy(j[4].attaque3, "Rasengan géant");
@@ -639,6 +639,7 @@ void Init(Stat j[]) {
   j[4].speedDodge = j[6].agility * 0.6 + j[6].reflex * 0.4;
   j[4].spe = 50;
   j[4].soin = 15;
+  j[4].index = 4;
 
   strcpy(j[5].nom, "ZORO");
   j[5].pv = 130;
@@ -657,16 +658,16 @@ void Init(Stat j[]) {
   j[5].speedDodge = j[7].agility * 0.6 + j[7].reflex * 0.4;
   j[5].spe = 60;
   j[5].soin = 5;
-  j[5].index = 7;
+  j[5].index = 5;
 
   strcpy(j[6].nom, "ITACHI");
   j[6].pv = 100;
   strcpy(j[6].attaque1, "Shuriken");
   j[6].damage1 = 18;
   j[6].attDelay2 = 2;
-  strcpy(j[8].attaque2, "Amaterasu");
-  j[8].damage2 = 35;
-  j[8].attDelay3 = 3;
+  strcpy(j[6].attaque2, "Amaterasu");
+  j[6].damage2 = 35;
+  j[6].attDelay3 = 3;
   strcpy(j[6].attaque3, "Tsukuyomi");
   j[6].speedAtt = 95;
   j[6].strengh = 65;
@@ -676,6 +677,7 @@ void Init(Stat j[]) {
   j[6].speedDodge = j[8].agility * 0.6 + j[8].reflex * 0.4;
   j[6].spe = 60;
   j[6].soin = 10;
+  j[6].index = 6;
 
   strcpy(j[7].nom, "AIZEN");
   j[7].pv = 125;
@@ -694,6 +696,7 @@ void Init(Stat j[]) {
   j[7].speedDodge = j[9].agility * 0.6 + j[9].reflex * 0.4;
   j[7].spe = 70;
   j[7].soin = 5;
+  j[7].index = 7;
 
 }
 void AttAnim(int index, int att){
@@ -786,6 +789,7 @@ void AttAnim(int index, int att){
       aizen3Att();
     }
   }
+  printf("%d\n", index);
 }
 void Liste(Stat j[], int n) {
   printf("Liste des personnages :\n");
@@ -865,7 +869,7 @@ void Affichage(Stat j1[], Stat j2[], int choix, int a, int c) {
   printf("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\n");
 }
 
-void Esquive(Stat att[], Stat cib[], int choixDefense, int degats, int choixAttack, int choixCible)
+void Esquive(Stat att[], Stat cib[], int choixDefense, int degats, int choixAttack, int choixCible, int attacNum)
 {
     switch(choixDefense)
     {
@@ -876,6 +880,7 @@ void Esquive(Stat att[], Stat cib[], int choixDefense, int degats, int choixAtta
             } else {
                 printf("❌ %s rate son esquive et prend les dégâts.\n", cib[choixCible].nom);
             }
+            AttAnim(att[choixAttack].index, attacNum);
             break;
 
         case 2: // Blocage
@@ -886,7 +891,7 @@ void Esquive(Stat att[], Stat cib[], int choixDefense, int degats, int choixAtta
           }else{
             printf("%s n'est pas assez fort pour bloquer l'attaque!", cib[choixCible].nom);
           }
-
+          AttAnim(att[choixAttack].index, attacNum);
           break;
 
         case 3: // Contre-attaque si assez rapide
@@ -894,17 +899,22 @@ void Esquive(Stat att[], Stat cib[], int choixDefense, int degats, int choixAtta
                 printf("⚔️ %s contre-attaque avec %s !\n", cib[choixCible].nom, cib[choixCible].attaque1);
                 cib[choixCible].pv += degats;
                 att[choixAttack].pv -= cib[choixCible].damage1;
+                AttAnim(att[choixAttack].index, attacNum);
+                AttAnim(cib[choixCible].index, 1);
             } else {
                 printf("❌ %s tente de contre-attaquer, mais échoue !\n", cib[choixCible].nom);
+                AttAnim(att[choixAttack].index, attacNum);
             }
             break;
 
         case 4: // Ne rien faire
             printf("😐 %s ne fait rien et encaisse l'attaque.\n", cib[choixCible].nom);
+            AttAnim(att[choixAttack].index, attacNum);
             break;
 
         default:
             printf("❌ Choix invalide. %s prend l'attaque en pleine face !\n", cib[choixCible].nom);
+            AttAnim(att[choixAttack].index, attacNum);
             break;
     }
 }
@@ -979,14 +989,14 @@ void AttaqueJ1(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
     
 
     if (attaque == 1) {
-        Esquive(j1, j2, defence, j1[choix].damage1, choix, cible);
+        Esquive(j1, j2, defence, j1[choix].damage1, choix, cible, attaque);
         j2[cible].pv -= j1[choix].damage1;
     } else if (attaque == 2 && j1[choix].attDelay2 <= 0) {
-        Esquive(j1, j2, defence, j1[choix].damage2, choix, cible);
+        Esquive(j1, j2, defence, j1[choix].damage2, choix, cible, attaque);
         j2[cible].pv -= j1[choix].damage2;
         j1[choix].attDelay2 = 2;
     } else if (attaque == 3 && j1[choix].attDelay3 <= 0) {
-        Esquive(j1, j2, defence, j1[choix].spe, choix, cible);
+        Esquive(j1, j2, defence, j1[choix].spe, choix, cible, attaque);
         j2[cible].pv -= j1[choix].spe;
         j1[choix].attDelay3 = 3;
     } else {
@@ -1074,14 +1084,14 @@ void AttaqueJ2(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
 
 
     if (attaque == 1) {
-        Esquive(j2, j1, defence, j2[choix].damage1, choix, cible);
+        Esquive(j2, j1, defence, j2[choix].damage1, choix, cible, attaque);
         j1[cible].pv -= j2[choix].damage1;
     } else if (attaque == 2 && j2[choix].attDelay2 <= 0) {
-        Esquive(j2, j1, defence, j2[choix].damage2, choix, cible);
+        Esquive(j2, j1, defence, j2[choix].damage2, choix, cible, attaque);
         j1[cible].pv -= j2[choix].damage2;
         j2[choix].attDelay2 = 2;
     } else if (attaque == 3 && j2[choix].attDelay3 <= 0) {
-        Esquive(j2, j1, defence, j2[choix].spe, choix, cible);
+        Esquive(j2, j1, defence, j2[choix].spe, choix, cible, attaque);
         j1[cible].pv -= j2[choix].spe;
         j2[choix].attDelay3 = 3;
     } else {
@@ -1174,14 +1184,14 @@ void AttaqueBot(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
     }
 
     if (attaque == 1) {
-        Esquive(j2, j1, defence, j2[choix].damage1, choix, cible);
+        Esquive(j2, j1, defence, j2[choix].damage1, choix, cible, attaque);
         j1[cible].pv -= j2[choix].damage1;
     } else if (attaque == 2 && j2[choix].attDelay2 <= 0) {
-        Esquive(j2, j1, defence, j2[choix].damage2, choix, cible);
+        Esquive(j2, j1, defence, j2[choix].damage2, choix, cible, attaque);
         j1[cible].pv -= j2[choix].damage2;
         j2[choix].attDelay2 = 2;
     } else if (attaque == 3 && j2[choix].attDelay3 <= 0) {
-        Esquive(j2, j1, defence, j2[choix].spe, choix, cible);
+        Esquive(j2, j1, defence, j2[choix].spe, choix, cible, attaque);
         j1[cible].pv -= j2[choix].spe;
         j2[choix].attDelay3 = 3;
     } else {
