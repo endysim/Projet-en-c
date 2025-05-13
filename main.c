@@ -582,16 +582,17 @@ void Init(Stat j[]) {
   j[1].reflex = 30;
   j[1].speedDodge = 36;
   j[1].soin = 0;
+  j[1].index = 1;
 
-  strcpy(j[2].nom, "MAGE");
+  strcpy(j[2].nom, "SHOTO");
   j[2].pv = 80;
-  strcpy(j[2].attaque1, "Boule de feu");
+  strcpy(j[2].attaque1, "Point de feu");
   j[2].damage1 = 40;
   j[2].attDelay2 = 2;
   strcpy(j[2].attaque2, "Boule de glace");
   j[2].damage2 = 50;
   j[2].attDelay3 = 3;
-  strcpy(j[2].attaque3, "Super Boule de feu");
+  strcpy(j[2].attaque3, "Super point de feu");
   j[2].spe = 60;
   j[2].speedAtt = 90;
   j[2].strengh = 40;
@@ -600,132 +601,98 @@ void Init(Stat j[]) {
   j[2].reflex = 70;
   j[2].speedDodge = 46;
   j[2].soin = 20;
+  j[2].index = 2;
 
-  strcpy(j[3].nom, "SOIGNER");
+  strcpy(j[3].nom, "SONIC");
   j[3].pv = 100;
-  strcpy(j[3].attaque1, "Soin léger");
-  j[3].damage1 = 5;
+  strcpy(j[3].attaque1, "Charge rapide");
+  j[3].damage1 = 15;
   j[3].attDelay2 = 2;
-  strcpy(j[3].attaque2, "Soin modéré");
-  j[3].damage2 = 10;
+  strcpy(j[3].attaque2, "Bouclier destructeur");
+  j[3].damage2 = 25;
   j[3].attDelay3 = 3;
-  strcpy(j[3].attaque3, "Soin puissant");
-  j[3].spe = 15;
-  j[3].speedAtt = 60;
-  j[3].strengh = 40;
-  j[3].counter = 50;
-  j[3].agility = 50;
-  j[3].reflex = 60;
-  j[3].speedDodge = 54;
-  j[3].soin = 40;
-
-  strcpy(j[4].nom, "SONIC");
-  j[4].pv = 100;
-  strcpy(j[4].attaque1, "Charge rapide");
-  j[4].damage1 = 15;
-  j[4].attDelay2 = 2;
-  strcpy(j[4].attaque2, "Bouclier destructeur");
-  j[4].damage2 = 25;
-  j[4].attDelay3 = 3;
   strcpy(j[4].attaque3, "Spin dash");
-  j[4].spe = 35;
-  j[4].speedAtt = 130;       // RAS
-  j[4].strengh = 70;         // RAS
-  j[4].counter = 100;        // OK
-  j[4].agility = 90;         // légèrement augmenté
-  j[4].reflex = 80;          // Sonic a des réflexes excellents
-  j[4].speedDodge = 86;
-  j[4].soin = 5;
+  j[3].spe = 35;
+  j[3].speedAtt = 130;
+  j[3].strengh = 70;
+  j[3].counter = 100;
+  j[3].agility = 90;         
+  j[3].reflex = 80;
+  j[3].speedDodge = 86;
+  j[3].soin = 5;
 
-  strcpy(j[5].nom, "MARIO");
-  j[5].pv = 100;
-  strcpy(j[5].attaque1, "Coup de marteau");
-  j[5].damage1 = 15;
-  j[5].attDelay2 = 2;
-  strcpy(j[5].attaque2, "Coup de feu");
-  j[5].damage2 = 25;
-  j[5].attDelay3 = 3;
-  strcpy(j[5].attaque3, "Super saut");
-  j[5].speedAtt = 85;       // RAS
-  j[5].strengh = 80;         // RAS
-  j[5].counter = 82;        // OK
-  j[5].agility = 70;         // légèrement augmenté
-  j[5].reflex = 75;          // Sonic a des réflexes excellents
-  j[5].speedDodge = 72;
-  j[5].spe = 35;
-  j[5].soin = 10;
-
-  strcpy(j[6].nom, "NARUTO");
-  j[6].pv = 120;
-  strcpy(j[6].attaque1, "Rasengan");
-  j[6].damage1 = 28;
-  j[6].attDelay2 = 2;
+  strcpy(j[4].nom, "NARUTO");
+  j[4].pv = 120;
+  strcpy(j[4].attaque1, "Rasengan");
+  j[4].damage1 = 28;
+  j[4].attDelay2 = 2;
   strcpy(j[6].attaque2, "Clones de l’ombre");
-  j[6].damage2 = 20;
-  j[6].attDelay3 = 3;
-  strcpy(j[6].attaque3, "Mode Ermite");
-  j[6].speedAtt = 90;
-  j[6].strengh = 80;
-  j[6].counter = (j[6].speedAtt + j[6].strengh) / 2;
-  j[6].agility = 85;
-  j[6].reflex = 80;
-  j[6].speedDodge = j[6].agility * 0.6 + j[6].reflex * 0.4;
-  j[6].spe = 50;
-  j[6].soin = 15;
+  j[4].damage2 = 20;
+  j[4].attDelay3 = 3;
+  strcpy(j[4].attaque3, "Rasengan géant");
+  j[4].speedAtt = 90;
+  j[4].strengh = 80;
+  j[4].counter = (j[6].speedAtt + j[6].strengh) / 2;
+  j[4].agility = 85;
+  j[4].reflex = 80;
+  j[4].speedDodge = j[6].agility * 0.6 + j[6].reflex * 0.4;
+  j[4].spe = 50;
+  j[4].soin = 15;
 
-  strcpy(j[7].nom, "ZORO");
-  j[7].pv = 130;
-  strcpy(j[7].attaque1, "Tranchant du démon");
-  j[7].damage1 = 30;
-  j[7].attDelay2 = 2;
-  strcpy(j[7].attaque2, "Tora Gari");
-  j[7].damage2 = 35;
-  j[7].attDelay3 = 3;
-  strcpy(j[7].attaque3, "Asura : Ichibugin");
-  j[7].speedAtt = 70;
-  j[7].strengh = 110;
-  j[7].counter = (j[7].speedAtt + j[7].strengh) / 2;
-  j[7].agility = 60;
-  j[7].reflex = 50;
-  j[7].speedDodge = j[7].agility * 0.6 + j[7].reflex * 0.4;
-  j[7].spe = 60;
-  j[7].soin = 5;
+  strcpy(j[5].nom, "ZORO");
+  j[5].pv = 130;
+  strcpy(j[5].attaque1, "Tranchant du démon");
+  j[5].damage1 = 30;
+  j[5].attDelay2 = 2;
+  strcpy(j[5].attaque2, "Tora Gari");
+  j[5].damage2 = 35;
+  j[5].attDelay3 = 3;
+  strcpy(j[5].attaque3, "Asura : Ichibugin");
+  j[5].speedAtt = 70;
+  j[5].strengh = 110;
+  j[5].counter = (j[7].speedAtt + j[7].strengh) / 2;
+  j[5].agility = 60;
+  j[5].reflex = 50;
+  j[5].speedDodge = j[7].agility * 0.6 + j[7].reflex * 0.4;
+  j[5].spe = 60;
+  j[5].soin = 5;
+  j[5].index = 7;
 
-  strcpy(j[8].nom, "ITACHI");
-  j[8].pv = 100;
-  strcpy(j[8].attaque1, "Shuriken");
-  j[8].damage1 = 18;
-  j[8].attDelay2 = 2;
+  strcpy(j[6].nom, "ITACHI");
+  j[6].pv = 100;
+  strcpy(j[6].attaque1, "Shuriken");
+  j[6].damage1 = 18;
+  j[6].attDelay2 = 2;
   strcpy(j[8].attaque2, "Amaterasu");
   j[8].damage2 = 35;
   j[8].attDelay3 = 3;
-  strcpy(j[8].attaque3, "Tsukuyomi");
-  j[8].speedAtt = 95;
-  j[8].strengh = 65;
-  j[8].counter = (j[8].speedAtt + j[8].strengh) / 2;
-  j[8].agility = 75;
-  j[8].reflex = 95;
-  j[8].speedDodge = j[8].agility * 0.6 + j[8].reflex * 0.4;
-  j[8].spe = 60;
-  j[8].soin = 10;
+  strcpy(j[6].attaque3, "Tsukuyomi");
+  j[6].speedAtt = 95;
+  j[6].strengh = 65;
+  j[6].counter = (j[8].speedAtt + j[8].strengh) / 2;
+  j[6].agility = 75;
+  j[6].reflex = 95;
+  j[6].speedDodge = j[8].agility * 0.6 + j[8].reflex * 0.4;
+  j[6].spe = 60;
+  j[6].soin = 10;
 
-  strcpy(j[9].nom, "AIZEN");
-  j[9].pv = 125;
-  strcpy(j[9].attaque1, "Coup de sabre");
-  j[9].damage1 = 22;
-  j[9].attDelay2 = 2;
-  strcpy(j[9].attaque2, "Hadō 90 : Kurohitsugi");
-  j[9].damage2 = 40;
-  j[9].attDelay3 = 3;
-  strcpy(j[9].attaque3, "Kyoka Suigetsu");
-  j[9].speedAtt = 80;
-  j[9].strengh = 90;
-  j[9].counter = (j[9].speedAtt + j[9].strengh) / 2;
-  j[9].agility = 70;
-  j[9].reflex = 85;
-  j[9].speedDodge = j[9].agility * 0.6 + j[9].reflex * 0.4;
-  j[9].spe = 70;
-  j[9].soin = 5;
+  strcpy(j[7].nom, "AIZEN");
+  j[7].pv = 125;
+  strcpy(j[7].attaque1, "Coup de sabre");
+  j[7].damage1 = 22;
+  j[7].attDelay2 = 2;
+  strcpy(j[7].attaque2, "Hadō 90 : Kurohitsugi");
+  j[7].damage2 = 40;
+  j[7].attDelay3 = 3;
+  strcpy(j[7].attaque3, "Kyoka Suigetsu");
+  j[7].speedAtt = 80;
+  j[7].strengh = 90;
+  j[7].counter = (j[9].speedAtt + j[9].strengh) / 2;
+  j[7].agility = 70;
+  j[7].reflex = 85;
+  j[7].speedDodge = j[9].agility * 0.6 + j[9].reflex * 0.4;
+  j[7].spe = 70;
+  j[7].soin = 5;
 
 }
 void Liste(Stat j[], int n) {
