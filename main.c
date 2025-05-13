@@ -1,11 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <time.h>
-#include <unistd.h>
-#include <unistd.h>
+#include "imports.h"
+//importation des bibliotèques depuis le fichier imports.h
 
 typedef struct {
+  //Paramètres des personnages
   int pv;
   char nom[100];
   char attaque1[100];
@@ -16,13 +13,13 @@ typedef struct {
   char attaque3[100];
   int attDelay3;
   int spe;
-  int speedAtt;
-  int strengh;
-  float counter;
+  int vitAtt;
+  int force;
+  float contre;
   int soin;
-  int agility;
+  int agilite;
   int reflex;
-  int speedDodge;
+  int vitEsq;
   int index;
 } Stat;
 
@@ -31,6 +28,7 @@ void effacerEcran() {
   printf("\033[H");  // Replace le curseur en haut à gauche
 }
 void sonicDraw(){
+  // image de l'écran d'acceuil(art ASCII)
 
     printf("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣤⣤⣤⣄⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n");
     printf("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠤⠖⣚⣩⣭⣥⣶⣶⣶⣶⣶⣶⣶⣬⣭⣙⣛⠲⢦⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀\n");
@@ -59,6 +57,7 @@ void sonicDraw(){
 }
 
 void ecranAccueil() {
+    //Titre de l'écran d'acceuil
     printf("\033[1;32m"); // Vert clair pour le cadre
     printf("╔═════════════════════════════════════════════════════════════════════════════╗\n");
     printf("║\033[1;36m                         BIENVENUE DANS                                      \033[1;32m║\n");
@@ -77,6 +76,7 @@ void ecranAccueil() {
     getchar();
 }
 
+//Fonctions gérant la compilation et l'exécution automatique de chaque personnages.
 void zoro1Att(){
    // Compilation (si ce n'est pas déjà fait)
     int resultat_compilation = system("gcc zoro1.c -o zoro1 $(sdl2-config --cflags --libs) -lSDL2_image");
@@ -535,17 +535,19 @@ void sonic3Att(){
 }
 
 void Intro() {
-
+  //Fonction qui gere l'écran d'acceuil
   effacerEcran();
   sonicDraw();
   sleep(1);
   ecranAccueil();
 }
 
+//Fonctions qui gèrent l'interface durant la partie(elles on été écrite plus bas)
 void afficherBarreVie(int pv, int maxPV);
 void Affichage(Stat j1[], Stat j2[], int choix, int a, int c);
 
 void Init(Stat j[]) {
+  //Initialisation des paramétre des personnages:
   strcpy(j[0].nom, "ARCHER");
   j[0].pv = 100;
   strcpy(j[0].attaque1, "Flèche");
@@ -556,12 +558,12 @@ void Init(Stat j[]) {
   j[0].attDelay3 = 3;
   strcpy(j[0].attaque3, "Flèche empoisonnée");
   j[0].spe = 50;
-  j[0].speedAtt = 110;
-  j[0].strengh = 60;
-  j[0].counter = 85;
-  j[0].agility = 75;
+  j[0].vitAtt = 110;
+  j[0].force = 60;
+  j[0].contre = 85;
+  j[0].agilite = 75;
   j[0].reflex = 65;
-  j[0].speedDodge = 71;
+  j[0].vitEsq = 71;
   j[0].soin = 0;
   j[0].index = 0;
 
@@ -575,12 +577,12 @@ void Init(Stat j[]) {
   j[1].attDelay3 = 3;
   strcpy(j[1].attaque3, "Coup de masse");
   j[1].spe = 30;
-  j[1].speedAtt = 70;
-  j[1].strengh = 100;
-  j[1].counter = 85;
-  j[1].agility = 40;
+  j[1].vitAtt = 70;
+  j[1].force = 100;
+  j[1].contre = 85;
+  j[1].agilite = 40;
   j[1].reflex = 30;
-  j[1].speedDodge = 36;
+  j[1].vitEsq = 36;
   j[1].soin = 0;
   j[1].index = 1;
 
@@ -594,12 +596,12 @@ void Init(Stat j[]) {
   j[2].attDelay3 = 3;
   strcpy(j[2].attaque3, "Super point de feu");
   j[2].spe = 60;
-  j[2].speedAtt = 90;
-  j[2].strengh = 40;
-  j[2].counter = 65;
-  j[2].agility = 30;
+  j[2].vitAtt = 90;
+  j[2].force = 40;
+  j[2].contre = 65;
+  j[2].agilite = 30;
   j[2].reflex = 70;
-  j[2].speedDodge = 46;
+  j[2].vitEsq = 46;
   j[2].soin = 20;
   j[2].index = 2;
 
@@ -613,12 +615,12 @@ void Init(Stat j[]) {
   j[3].attDelay3 = 3;
   strcpy(j[3].attaque3, "Spin dash");
   j[3].spe = 35;
-  j[3].speedAtt = 130;
-  j[3].strengh = 70;
-  j[3].counter = 100;
-  j[3].agility = 90;         
+  j[3].vitAtt = 130;
+  j[3].force = 70;
+  j[3].contre = 100;
+  j[3].agilite = 90;         
   j[3].reflex = 80;
-  j[3].speedDodge = 86;
+  j[3].vitEsq = 86;
   j[3].soin = 5;
   j[3].index = 3;
 
@@ -631,12 +633,12 @@ void Init(Stat j[]) {
   j[4].damage2 = 20;
   j[4].attDelay3 = 3;
   strcpy(j[4].attaque3, "Rasengan géant");
-  j[4].speedAtt = 90;
-  j[4].strengh = 80;
-  j[4].counter = (j[6].speedAtt + j[6].strengh) / 2;
-  j[4].agility = 85;
+  j[4].vitAtt = 90;
+  j[4].force = 80;
+  j[4].contre = (j[4].vitAtt + j[4].force) / 2;
+  j[4].agilite = 85;
   j[4].reflex = 80;
-  j[4].speedDodge = j[6].agility * 0.6 + j[6].reflex * 0.4;
+  j[4].vitEsq = j[4].agilite * 0.6 + j[4].reflex * 0.4;
   j[4].spe = 50;
   j[4].soin = 15;
   j[4].index = 4;
@@ -650,12 +652,12 @@ void Init(Stat j[]) {
   j[5].damage2 = 35;
   j[5].attDelay3 = 3;
   strcpy(j[5].attaque3, "Asura : Ichibugin");
-  j[5].speedAtt = 70;
-  j[5].strengh = 110;
-  j[5].counter = (j[7].speedAtt + j[7].strengh) / 2;
-  j[5].agility = 60;
+  j[5].vitAtt = 70;
+  j[5].force = 110;
+  j[5].contre = (j[5].vitAtt + j[5].force) / 2;
+  j[5].agilite = 60;
   j[5].reflex = 50;
-  j[5].speedDodge = j[7].agility * 0.6 + j[7].reflex * 0.4;
+  j[5].vitEsq = j[5].agilite * 0.6 + j[5].reflex * 0.4;
   j[5].spe = 60;
   j[5].soin = 5;
   j[5].index = 5;
@@ -669,12 +671,12 @@ void Init(Stat j[]) {
   j[6].damage2 = 35;
   j[6].attDelay3 = 3;
   strcpy(j[6].attaque3, "Tsukuyomi");
-  j[6].speedAtt = 95;
-  j[6].strengh = 65;
-  j[6].counter = (j[8].speedAtt + j[8].strengh) / 2;
-  j[6].agility = 75;
+  j[6].vitAtt = 95;
+  j[6].force = 65;
+  j[6].contre = (j[6].vitAtt + j[6].force) / 2;
+  j[6].agilite = 75;
   j[6].reflex = 95;
-  j[6].speedDodge = j[8].agility * 0.6 + j[8].reflex * 0.4;
+  j[6].vitEsq = j[6].agilite * 0.6 + j[6].reflex * 0.4;
   j[6].spe = 60;
   j[6].soin = 10;
   j[6].index = 6;
@@ -688,17 +690,18 @@ void Init(Stat j[]) {
   j[7].damage2 = 40;
   j[7].attDelay3 = 3;
   strcpy(j[7].attaque3, "Kyoka Suigetsu");
-  j[7].speedAtt = 80;
-  j[7].strengh = 90;
-  j[7].counter = (j[9].speedAtt + j[9].strengh) / 2;
-  j[7].agility = 70;
+  j[7].vitAtt = 80;
+  j[7].force = 90;
+  j[7].contre = (j[7].vitAtt + j[7].force) / 2;
+  j[7].agilite = 70;
   j[7].reflex = 85;
-  j[7].speedDodge = j[9].agility * 0.6 + j[9].reflex * 0.4;
+  j[7].vitEsq = j[7].agilite * 0.6 + j[7].reflex * 0.4;
   j[7].spe = 70;
   j[7].soin = 5;
   j[7].index = 7;
 
 }
+// Fonction qui gère les animations des personnages
 void AttAnim(int index, int att){
   if(index == 0){
     if(att == 1){
@@ -789,8 +792,8 @@ void AttAnim(int index, int att){
       aizen3Att();
     }
   }
-  printf("%d\n", index);
 }
+// Affichage du menu des personnages en début de partie
 void Liste(Stat j[], int n) {
   printf("Liste des personnages :\n");
 
@@ -806,9 +809,10 @@ void Liste(Stat j[], int n) {
 
 }
 
+// fonction qui gère la sélection des personnages par les joueurs
 void ChoixJoueur(Stat dest[], Stat source[]) {
   int p1, p2, p3;
-  printf("Entrez les numéros des 3 personnages à choisir (0 à 7) : ");
+  printf("Entrez les numéros des 3 personnages à choisir (0 à 5) : ");
   scanf("%d %d %d", &p1, &p2, &p3);
 
   if (p1 < 0 || p1 > 7 || p2 < 0 || p2 > 7 || p3 < 0 || p3 > 7) {
@@ -822,6 +826,7 @@ void ChoixJoueur(Stat dest[], Stat source[]) {
 }
 
 void Affichage(Stat j1[], Stat j2[], int choix, int a, int c) {
+  //Fonction qui gère l'affichage pendant la partie
   char *p1 = "";
   char *p2 = "";
   char *d1 = "";
@@ -833,7 +838,9 @@ void Affichage(Stat j1[], Stat j2[], int choix, int a, int c) {
     for (int i = 0; i < 3; i++) {
       p1 = (a == i) ? "💥" : "";
       p2 = (c == i) ? "💥" : "";
-      printf("-%s%s                         %s-%s\n", j1[i].nom, p1, p2, j2[i].nom);
+      if (j1[i].pv <= 0) d1 = "💀"; else d1 = "  ";
+      if (j2[i].pv <= 0) d2 = "💀"; else d2 = "  ";
+      printf("%s-%s%s                         %s-%s%s\n", d1, j1[i].nom, p1, p2, j2[i].nom,d2);
       afficherBarreVie(j1[i].pv, 150);
       printf("                             ");
       afficherBarreVie(j2[i].pv, 150);
@@ -842,7 +849,11 @@ void Affichage(Stat j1[], Stat j2[], int choix, int a, int c) {
   else if (choix == 2) {
     printf("\033[1mJoueur 1:                         Bot:\033[0m\n");
     for (int i = 0; i < 3; i++) {
-      printf("-%s                         -%s\n", j1[i].nom, j2[i].nom);
+      p1 = (a == i) ? "💥" : "";
+      p2 = (c == i) ? "💥" : "";
+      if (j1[i].pv <= 0) d1 = "💀"; else d1 = "  ";
+      if (j2[i].pv <= 0) d2 = "💀"; else d2 = "  ";
+      printf("%s-%s%s                         %s-%s%s\n", d1, j1[i].nom, p1, p2, j2[i].nom,d2);
       afficherBarreVie(j1[i].pv, 150);
       printf("                             ");
       afficherBarreVie(j2[i].pv, 150);
@@ -869,12 +880,13 @@ void Affichage(Stat j1[], Stat j2[], int choix, int a, int c) {
   printf("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥\n");
 }
 
+// Fonction qui gère la réaction du joueur attaquer(esquive, blocage, contre-attaque)
 void Esquive(Stat att[], Stat cib[], int choixDefense, int degats, int choixAttack, int choixCible, int attacNum)
 {
     switch(choixDefense)
     {
-        case 1: // Esquive basée sur speedDodge
-            if (att[choixAttack].speedAtt < cib[choixCible].speedDodge) {
+        case 1: // Esquive basée sur vitAtt
+            if (att[choixAttack].vitAtt < cib[choixCible].vitAtt) {
                 printf("💨 %s esquive l'attaque avec grâce !\n", cib[choixCible].nom);
                 cib[choixCible].pv += degats;
             } else {
@@ -884,10 +896,10 @@ void Esquive(Stat att[], Stat cib[], int choixDefense, int degats, int choixAtta
             break;
 
         case 2: // Blocage
-          if(cib[choixCible].strengh >= att[choixAttack].strengh){
+          if(cib[choixCible].force >= att[choixAttack].force){
 
-            printf("🛡️ %s bloque l'attaque et réduit les dégâts à %d !\n", cib[choixCible].nom, cib[choixCible].strengh - att[choixAttack].strengh);
-            cib[choixCible].pv += (degats * (att[choixAttack].strengh/cib[choixCible].strengh));
+            printf("🛡️ %s bloque l'attaque et réduit les dégâts à %d !\n", cib[choixCible].nom, cib[choixCible].force - att[choixAttack].force);
+            cib[choixCible].pv += (degats * (att[choixAttack].force/cib[choixCible].force));
           }else{
             printf("%s n'est pas assez fort pour bloquer l'attaque!", cib[choixCible].nom);
           }
@@ -895,7 +907,7 @@ void Esquive(Stat att[], Stat cib[], int choixDefense, int degats, int choixAtta
           break;
 
         case 3: // Contre-attaque si assez rapide
-            if (cib[choixCible].counter > att[choixAttack].speedAtt) {
+            if (cib[choixCible].contre > att[choixAttack].vitAtt) {
                 printf("⚔️ %s contre-attaque avec %s !\n", cib[choixCible].nom, cib[choixCible].attaque1);
                 cib[choixCible].pv += degats;
                 att[choixAttack].pv -= cib[choixCible].damage1;
@@ -920,6 +932,7 @@ void Esquive(Stat att[], Stat cib[], int choixDefense, int degats, int choixAtta
 }
 
 
+//Fonction qui gère les attaques du joueur 1
 void AttaqueJ1(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
     int choix, cible, attaque, defence;
 
@@ -1025,6 +1038,7 @@ void AttaqueJ1(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
     }
 }
 
+//Fonction qui gère les attaques du joueur 2
 void AttaqueJ2(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
     int choix, cible, attaque, defence;
 
@@ -1120,6 +1134,7 @@ void AttaqueJ2(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
     }
 }
 
+//Fonction qui gère les attaques du Bot
 void AttaqueBot(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
     int choix, cible, attaque, defence;
 
@@ -1220,6 +1235,7 @@ void AttaqueBot(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
     }
 }
 
+// Boucle principale du jeu
 void Combat(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
     int startFirst = rand() % 11;
 
@@ -1266,6 +1282,8 @@ void Combat(Stat j1[], Stat j2[], int *joueur1, int *joueur2, int c) {
 void Start(Stat j1[], Stat j2[], int c, int *joueur1, int *joueur2) {
   Combat(j1, j2, joueur1, joueur2, c);
 }
+
+//Fonction qui gère l'affichage des barres de vie
 void afficherBarreVie(int pv, int maxPV) {
   int barres = (pv * 20) / maxPV;
   printf("[");
@@ -1290,7 +1308,7 @@ int main(void) {
   int choix;
   Intro();
   Init(joueurs);
-
+  //Choix de l'adversaire
   printf("1 -> Joueur 2      2 -> Bot\n");
   printf("Adversaire : ");
   scanf("%d", &choix);
