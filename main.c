@@ -23,6 +23,7 @@ typedef struct {
   int agility;
   int reflex;
   int speedDodge;
+int index;
 } Stat;
 
 void effacerEcran() {
